@@ -5,8 +5,8 @@ from radish_selenium.radish.selenium_base_steps import SeleniumBaseSteps, attach
 from radish_selenium.radish.selenium_steps_config import get_selenium_config
 
 # from realworld_ui.sdk.page_objects.general import LoggedPageObject
-from conduit_ui.radish.general_ui_steps import ConduitBaseSteps
-from conduit_ui.sdk.page_objects.signup import SignupPageObject
+from conduit_ui.radish.ui_steps import ConduitBaseSteps
+from conduit_ui.sdk.page_objects.signup_page_object import SignupPageObject
 
 
 @after.each_step

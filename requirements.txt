@@ -1,0 +1,2 @@
+-e ../tw2019-app-client
+Faker>=2.0.2
