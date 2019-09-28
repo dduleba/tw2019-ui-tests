@@ -16,7 +16,7 @@ Feature: Article
     When User navigate to create article page
     And User fills the new article form
     And User sumbit the new article form
-    Then User should see the new article on page
+    Then User should see the created article
 
   @test_article_02
   @manual

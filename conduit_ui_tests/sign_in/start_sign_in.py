@@ -7,7 +7,7 @@ from radish_ext import get_radish_ext_dir
 from radish_ext.sdk.helpers import get_cucumber_json_report_name, json_pretty_dump
 from radish_ext.tools.main_radish_ext import main_radish_ext
 
-from conduit_ui_tests.article.ff_location import FeatureFilesLocation
+from conduit_ui_tests.sign_in.ff_location import FeatureFilesLocation
 
 if __name__ == "__main__":
     start_path, full_path_ff = FeatureFilesLocation().get_full_ff_path()

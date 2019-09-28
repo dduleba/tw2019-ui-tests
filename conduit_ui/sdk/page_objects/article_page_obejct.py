@@ -23,7 +23,7 @@ class CreateArticlePageObject(NavigateConduitPageObject):
         if 'article' in article_model:
             self.article.send_keys(article_model.get('article'))
         if 'tag' in article_model:
-            self.tag.send_keys(article_model.get('article'))
+            self.tag.send_keys(article_model.get('tag'))
 
     def submit(self):
         self.publish_article.click()

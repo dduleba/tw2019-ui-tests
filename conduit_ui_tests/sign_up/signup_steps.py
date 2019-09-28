@@ -5,6 +5,7 @@ from radish_selenium.radish.selenium_base_steps import SeleniumBaseSteps, attach
 from radish_selenium.radish.selenium_steps_config import get_selenium_config
 
 # from realworld_ui.sdk.page_objects.general import LoggedPageObject
+from conduit_rest.radish.conduit_rest_steps import get_conduit_config
 from conduit_ui.radish.ui_steps import ConduitBaseSteps
 from conduit_ui.sdk.page_objects.signup_page_object import SignupPageObject
 
@@ -27,9 +28,9 @@ class SignupSteps(object):
     def user_fills_the_sign_up_page(self, step):
         """User fills the Sign up page"""
         stc = get_selenium_config(step.context)
+        stc_conduit = get_conduit_config(step.context)
         spo = SignupPageObject(stc.driver)
-        faker_ = Faker()
-
+        faker_ = stc_conduit.faker
         username = faker_.user_name()
         userpass = faker_.password()
         useremail = faker_.email()

@@ -1,9 +1,10 @@
 from radish import steps, after
-from radish_selenium.radish.selenium_base_steps import SeleniumBaseSteps, attach_screenshot_on_failure, \
+from radish_selenium.radish.selenium_base_steps import attach_screenshot_on_failure, \
     attach_page_source_on_failure, attach_console_log_on_failure
 
+# from realworld_ui.sdk.page_objects.general import LoggedPageObject
 from conduit_rest.radish.conduit_rest_steps import ConduitRestBaseSteps
-from conduit_ui.radish.ui_steps import ConduitBaseSteps, SignInBaseSteps, ArticleBaseSteps
+from conduit_ui.radish.ui_steps import ConduitBaseSteps, SignInBaseSteps
 
 
 @after.each_step
@@ -11,11 +12,6 @@ def on_failure(step):
     attach_screenshot_on_failure(step)
     attach_page_source_on_failure(step)
     attach_console_log_on_failure(step)
-
-
-@steps
-class SeleniumSteps(SeleniumBaseSteps):
-    pass
 
 
 @steps
@@ -30,9 +26,4 @@ class ConduitRestSteps(ConduitRestBaseSteps):
 
 @steps
 class SignInSteps(SignInBaseSteps):
-    pass
-
-
-@steps
-class NewArticleSteps(ArticleBaseSteps):
     pass

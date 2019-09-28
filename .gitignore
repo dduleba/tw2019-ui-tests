@@ -2,4 +2,5 @@
 *.pyc
 cucumber_*.json
 radish_ext.log
+generated_steps.py
 *.egg-info

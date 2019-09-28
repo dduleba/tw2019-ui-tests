@@ -1,5 +1,4 @@
-from faker import Faker
-from nose.tools import assert_true
+from nose.tools import assert_true, assert_dict_contains_subset
 from radish_selenium.radish.selenium_base_steps import open_web_browser
 from radish_selenium.radish.selenium_steps_config import get_selenium_config
 
@@ -47,12 +46,22 @@ class ConduitBaseSteps(object):
 class SignInBaseSteps(object):
     def user_is_signed_in(self, step):
         """User is signed in"""
+        self.user_fill_sign_in_form_with_correct_data(step)
+        self.user_submit_sign_in_form(step)
+
+    def user_fill_sign_in_form_with_correct_data(self, step):
+        """User fill Sign in form with correct data"""
         stc = get_selenium_config(step.context)
         stc_conduit = get_conduit_config(step.context)
         ConduitBaseSteps().user_navigate_to_sign_in_page(step)
         user_model = stc_conduit.test_data.data.get('user')
         sign_in_page = SignInPageObject(stc.driver)
         sign_in_page.user_fill_form(user_model.get('email'), user_model.get('password'))
+
+    def user_submit_sign_in_form(self, step, ):
+        """User submit Sign in form"""
+        stc = get_selenium_config(step.context)
+        sign_in_page = SignInPageObject(stc.driver)
         sign_in_page.submit()
 
 
@@ -60,20 +69,23 @@ class ArticleBaseSteps(object):
     def user_fills_the_new_article_form(self, step, ):
         """User fills the new article form"""
         stc = get_selenium_config(step.context)
+        stc_conduit = get_conduit_config(step.context)
         art = CreateArticlePageObject(stc.driver)
-        f = Faker()
+        f = stc_conduit.faker
         text = f.text()
         words = text.split()
         title = f.sentence(ext_word_list=words, nb_words=3)
         about = f.sentence(ext_word_list=words, nb_words=5)
-        # tag = f.word(ext_word_list=words)
+        tag = f.word(ext_word_list=words)
         article = {
             'article': text,
             'title': title,
-            # 'tag': tag,
+            'tag': tag,
             'about': about,
         }
         art.user_fill_form(article)
+        article['article'] = article['article'].replace('\n', ' ')
+        stc_conduit.test_data.data['last_article'] = article
         stc.attach_screenshot_to_tests_report(step)
 
     def user_sumbit_the_new_article_form(self, step, ):
@@ -82,9 +94,16 @@ class ArticleBaseSteps(object):
         art = CreateArticlePageObject(stc.driver)
         art.submit()
 
-    def user_should_see_the_new_article_on_page(self, step, ):
-        """User should see the new article on page"""
+    def user_should_see_the_created_article(self, step):
+        """User should see the created article"""
         stc = get_selenium_config(step.context)
+        stc_conduit = get_conduit_config(step.context)
         art = ViewArticlePageObject(stc.driver)
-        stc.log.info(art.read_title())
-        stc.log.info(art.read_article())
+        article = stc_conduit.test_data.data.get('last_article')
+        current_title = art.read_title()
+        current_article = art.read_article()
+        assert_dict_contains_subset({'title': current_title,
+                                     'article': current_article},
+                                    article
+                                    )
+        stc.attach_screenshot_to_tests_report(step)
