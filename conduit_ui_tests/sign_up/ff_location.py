@@ -8,7 +8,6 @@ import os
 from radish_ext.radish.ff_location_base import FeatureFilesLocationBase
 
 import conduit_ui_tests
-import selenium_test_example
 
 
 class FeatureFilesLocation(FeatureFilesLocationBase):
