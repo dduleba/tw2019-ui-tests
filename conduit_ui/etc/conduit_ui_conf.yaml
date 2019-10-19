@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 conduit_frontend:
-  url: http://backend:4100
+  url: http://backend
 
 conduit_backend:
   url: http://backend:5000/api
@@ -15,9 +15,10 @@ Selenium:
 #  type: testcontainers
 #  url: http://localhost:4444/wd/hub
   capabilities:
-    browserName: chrome
-    goog:loggingPrefs:
-      browser: ALL
+#    browserName: chrome
+#    goog:loggingPrefs:
+#      browser: ALL
+    browserName: firefox
 #    chromeOptions:
 #      args:
 #      - --disable-web-security

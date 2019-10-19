@@ -1,7 +1,7 @@
 from faker import Faker
 from radish import steps, after
 from radish_selenium.radish.selenium_base_steps import SeleniumBaseSteps, attach_screenshot_on_failure, \
-    attach_page_source_on_failure, attach_console_log_on_failure
+    attach_page_source_on_failure, attach_console_log_on_failure, close_web_browser
 from radish_selenium.radish.selenium_steps_config import get_selenium_config
 
 # from realworld_ui.sdk.page_objects.general import LoggedPageObject
@@ -15,6 +15,11 @@ def on_failure(step):
     attach_screenshot_on_failure(step)
     attach_page_source_on_failure(step)
     attach_console_log_on_failure(step)
+
+
+@after.each_scenario
+def test_cleanup(scenario):
+    close_web_browser(scenario)
 
 
 @steps

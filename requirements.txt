@@ -1,2 +1,5 @@
+-e ../radish-bdd-extensions/pkg_radish_ext
+-e ../radish-bdd-extensions/pkg_radish_rest
+-e ../radish-bdd-extensions/pkg_radish_selenium
 -e ../tw2019-app-client
 Faker>=2.0.2

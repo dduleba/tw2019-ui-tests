@@ -1,6 +1,7 @@
 .idea
-*.pyc
+.env
 cucumber_*.json
 radish_ext.log
+gecodriver.log
 generated_steps.py
 *.egg-info
