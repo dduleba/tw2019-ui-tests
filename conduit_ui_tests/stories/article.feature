@@ -21,6 +21,3 @@ Feature: Article
   @test_article_02
   @manual
   Scenario: New article should be visible globally by not signed in user
-
-
-    #  --> Validate article visible by not logged user - piszemy z nimi całość REST easy / UI e2e test - acceptance

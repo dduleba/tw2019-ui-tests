@@ -25,7 +25,3 @@ Feature: Sign Up
     And User enter email "grzegorz@brzeczyszczykiewicz.test"
     And User submit the Sign up page
     Then User should be logged in conduit page
-
-
-
-#  --> SignIn not existing user with wrong password (validate error) - basic auth scenario which must be always implemented
